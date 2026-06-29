@@ -1,0 +1,70 @@
+# =========================
+# CREACIÓN DE USUARIOS
+# =========================
+
+user add 12345678Z Juan clave123
+user add 00000000T Ana clave456 1234567890123456789012
+user add 11111111H Pedro pass789
+
+# Usuario duplicado (debe dar error)
+user add 12345678Z Juan otraClave
+
+# =========================
+# LLAMADAS DIRECTAS
+# =========================
+
+call send 12345678Z hola mundo
+call send 12345678Z uno dos tres cuatro
+
+# Esta puede exceder límite gratuito
+call send 12345678Z esto es una llamada que puede no ejecutarse
+
+# Usuario premium
+call send 00000000T hola desde premium usuario
+
+# =========================
+# AGENTES
+# =========================
+
+agent add 00000000T 1
+agent add 00000000T 2
+
+# Agente duplicado (error esperado)
+agent add 00000000T 1
+
+# Agente en usuario normal
+agent add 11111111H 1
+
+# =========================
+# EJECUCIÓN DE AGENTES
+# =========================
+
+agent send 00000000T 1 hola mundo#adios mundo
+
+agent send 00000000T 2 uno dos tres#cuatro cinco
+
+# Agente inexistente (error)
+agent send 00000000T 99 hola mundo
+
+# =========================
+# FACTURACIÓN
+# =========================
+
+bill create 00000000T CALL
+bill create 00000000T AGENT
+bill create 00000000T MIXED
+
+# Usuario normal intentando facturar (error)
+bill create 12345678Z CALL
+
+# =========================
+# CASOS DE ERROR
+# =========================
+
+user add 99999999A UsuarioInvalido pass
+
+call send inexistente hola mundo
+
+agent send 11111111H 1 hola mundo
+
+bill create 00000000T UNKNOWN
