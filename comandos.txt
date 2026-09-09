@@ -61,7 +61,7 @@ bill create 12345678Z CALL
 # CASOS DE ERROR
 # =========================
 
-user add 99999999A UsuarioInvalido pass
+user add 99999999A UsuarioInvalido contraseña
 
 call send inexistente hola mundo
 
